@@ -17,14 +17,11 @@ const server = app.listen(process.env.PORT || 5000, () => {
 
 // config for your database
 var config = {
- user: 'henri', //update me
- password: 'Ch@brand!', //update me
- server: 'sql-henri-sandbox.database.windows.net', //update me //If local, replace by 'localhost\\MSSQLSERVER' 
- options: 
-        {
-           database: 'SQL-sandbox' //update me
-           , encrypt: true
-        }
+     user: 'henri', //update me
+     password: 'Ch@brand!', //update me
+     server: 'sql-henri-sandbox.database.windows.net', //update me 
+     database: 'SQL-sandbox', //update me
+     options:{encrypt: true}
  };
  
 
@@ -38,7 +35,7 @@ app.post('/webhook', (req, res) => {
          // create Request object
          var request = new sql.Request();
 
-        var query = "SELECT a.MON, a.current_status FROM 'internal_sales' a WHERE a.MON = '"+ req.MON +"';"
+        var query = "SELECT a.MON, a.current_status FROM [internal_sales] a WHERE a.MON = '"+ req.MON +"';"
         
          // query to the database and get the data
          request.query(query, function (err, recordset) {

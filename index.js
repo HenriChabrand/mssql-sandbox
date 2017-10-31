@@ -45,7 +45,7 @@ app.post('/webhook', (req, res) => {
              // send data as a response
              console.log(recordset);
              res.send(recordset);
-
+             sql.close()
          });
      });
 });

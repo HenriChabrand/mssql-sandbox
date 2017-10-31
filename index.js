@@ -27,6 +27,9 @@ var config = {
 
 app.post('/webhook', (req, res) => {
      
+     //get MON number from webhook call
+     var MON = req.body.MON;
+    
      // connect to your database
      sql.connect(config, function (err) {
 
@@ -34,8 +37,9 @@ app.post('/webhook', (req, res) => {
 
          // create Request object
          var request = new sql.Request();
-
-        var query = "SELECT a.MON, a.current_status FROM [internal_sales] a WHERE a.MON = '"+ req.MON +"';"
+         
+          // create the query that will return the order status from the MON number
+         var query = "SELECT a.MON, a.current_status FROM [internal_sales] a WHERE a.MON = '"+ MON +"';"
         
          // query to the database and get the data
          request.query(query, function (err, recordset) {

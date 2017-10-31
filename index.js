@@ -42,12 +42,12 @@ app.post('/webhook', (req, res) => {
         
          // query to the database and get the data
          request.query(query, function (err, recordset) {
-             console.log(recordset)
-             res.sen(recordset);
+            
              if (err) console.log(err)
 
              // send data as a response
              console.log(recordset);
+             res.sen(recordset);
 
          });
      });
